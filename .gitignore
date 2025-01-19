@@ -1,2 +1,38 @@
-proxy.crt
-proxy.key
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories (vendor/)
+vendor/
+
+# Logs
+*.log
+
+# IDE and editor configs
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Certificates and keys
+certs/
+*.crt
+*.key
+
+# Temporary files
+tmp/
+*.tmp
