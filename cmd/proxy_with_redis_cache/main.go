@@ -13,7 +13,7 @@ import (
 // limiting to 100 concurrent requests
 var sem = make(chan struct{}, 100)
 
-var lru_cache = cache.NewCache(100)
+var RedisCache = cache.NewRedisCache("localhost:6379", "", 0, 10*time.Minute)
 
 func handleConnect(w http.ResponseWriter, r *http.Request) {
 
@@ -102,9 +102,9 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	// if the cache GET requests
 	if r.Method == http.MethodGet {
-		if data, ok := lru_cache.Get(r.URL.String()); ok {
+		if cachedData, found := RedisCache.Get(r.URL.String()); found {
 			log.Printf("Cache hit for %s", r.URL)
-			w.Write(data)
+			w.Write([]byte(cachedData))
 			return
 		}
 	}
@@ -145,14 +145,14 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	respData, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Printf("Error reading response body: %v", err)
-		http.Error(w, "Error reading response", http.StatusInternalServerError)
+		http.Error(w, "Failed to read response", http.StatusInternalServerError)
 		return
 	}
 
-	// Store response in cache for GET requests
+	// store response in cache for GET requests only
 	if r.Method == http.MethodGet {
-		lru_cache.Add(r.URL.String(), respData)
-		log.Printf("Response cached for %s", r.URL)
+		RedisCache.Set(r.URL.String(), string(respData))
+		log.Printf("Stored in cache: %s", r.URL.String())
 	}
 
 	// Send response
