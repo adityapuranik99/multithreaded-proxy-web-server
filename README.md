@@ -29,6 +29,29 @@ MULTITHREADED-PROXY-WEB-SERVER/
 - Limits concurrent requests using semaphores
 - LRU Cache for GET requests (configurable)
 
+
+## Running with Redis
+
+Ensure Redis is running locally (default port 6379), or modify the Redis connection string in internals/cache/redis.go:
+
+    
+    redisClient = redis.NewClient(&redis.Options{
+        Addr:     "localhost:6379",
+        Password: "", // No password
+        DB:       0,  // Default database
+    })
+    
+
+### Testing the Cache
+
+1. Run the proxy server and make requests.
+
+2. Measure response time for the same request:
+
+    - First request (miss) should take longer.
+
+    - Subsequent requests (hit) should be faster.
+
 ## 🛠️ Setup & Run
 
 1. **Clone the repo**
@@ -52,7 +75,17 @@ MULTITHREADED-PROXY-WEB-SERVER/
     go run cmd/proxy_with_lru_cache/main.go
     ```
 
-5. **Test with cURL**
+5. **Run Proxy with Redis Cache**
+
+    ```bash
+    redis server
+    ```
+
+    ```bash
+    go run cmd/proxy_with_redis_cache/main.go
+    ``` 
+
+6. **Test with cURL**
     ```bash
     curl -x http://localhost:8080 http://example.com
     ```
