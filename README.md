@@ -1,3 +1,7 @@
+![Go Version](https://img.shields.io/badge/go-1.23.5-blue)
+![Redis](https://img.shields.io/badge/redis-7.2.7-red)
+![Concurrent Requests](https://img.shields.io/badge/concurrent%20requests-7500+-green)
+
 A high-performance proxy server built in Go featuring multiple caching strategies, Prometheus metrics, and comprehensive load testing capabilities.
 
 ## 📂 Project Structure
