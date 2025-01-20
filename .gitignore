@@ -37,3 +37,6 @@ certs/
 # Temporary files
 tmp/
 *.tmp
+
+# Node modules
+proxy-test/node_modules

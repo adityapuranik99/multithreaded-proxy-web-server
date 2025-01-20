@@ -1,0 +1,1469 @@
+{
+  "config": {
+    "stages": [
+      {
+        "duration": 60,
+        "requests": 1000
+      },
+      {
+        "duration": 120,
+        "requests": 2500
+      },
+      {
+        "duration": 180,
+        "requests": 5000
+      },
+      {
+        "duration": 60,
+        "requests": 7500
+      },
+      {
+        "duration": 120,
+        "requests": 3000
+      },
+      {
+        "duration": 60,
+        "requests": 1000
+      }
+    ],
+    "proxyHost": "localhost",
+    "proxyPort": 8080,
+    "timeoutMs": 10000,
+    "statsInterval": 5000
+  },
+  "finalStats": {
+    "duration": 600.542,
+    "totalRequests": 4844986,
+    "successRate": 76.9875496028265,
+    "errors": {
+      "ECONNRESET": 1107466,
+      "EPIPE": 64,
+      "ETIMEDOUT": 7326,
+      "ERR_BAD_RESPONSE": 69,
+      "ECONNABORTED": 25
+    },
+    "urlStats": {
+      "http://neverssl.com": {
+        "attempts": 807797,
+        "success": 622164,
+        "failed": 185573,
+        "totalTime": 186655721,
+        "responseTimeBuckets": [
+          139394,
+          71642,
+          240132,
+          40253,
+          24342,
+          33624,
+          26821,
+          18590,
+          9562,
+          17804
+        ]
+      },
+      "http://httpbin.org/get": {
+        "attempts": 808071,
+        "success": 621904,
+        "failed": 186167,
+        "totalTime": 186383870,
+        "responseTimeBuckets": [
+          139132,
+          71569,
+          241231,
+          39756,
+          24444,
+          33129,
+          26957,
+          18377,
+          9550,
+          17759
+        ]
+      },
+      "https://httpbin.org/get": {
+        "attempts": 806628,
+        "success": 621016,
+        "failed": 185612,
+        "totalTime": 185990780,
+        "responseTimeBuckets": [
+          138747,
+          71658,
+          240489,
+          39834,
+          24302,
+          33658,
+          26777,
+          18431,
+          9516,
+          17604
+        ]
+      },
+      "https://httpbin.org/status/200": {
+        "attempts": 807032,
+        "success": 621771,
+        "failed": 185261,
+        "totalTime": 186677439,
+        "responseTimeBuckets": [
+          139180,
+          71845,
+          240735,
+          39888,
+          24393,
+          33349,
+          26643,
+          18272,
+          9511,
+          17955
+        ]
+      },
+      "http://example.com": {
+        "attempts": 809407,
+        "success": 622723,
+        "failed": 186584,
+        "totalTime": 186394588,
+        "responseTimeBuckets": [
+          138987,
+          71991,
+          241443,
+          40123,
+          24504,
+          33054,
+          27089,
+          18448,
+          9470,
+          17614
+        ]
+      },
+      "https://example.com": {
+        "attempts": 806311,
+        "success": 620458,
+        "failed": 185753,
+        "totalTime": 185330283,
+        "responseTimeBuckets": [
+          138309,
+          71662,
+          241414,
+          39518,
+          24308,
+          33227,
+          26608,
+          18315,
+          9513,
+          17584
+        ]
+      }
+    }
+  },
+  "timeSeriesData": [
+    {
+      "timestamp": 1737401618661,
+      "concurrent": 62,
+      "successful": 37831,
+      "failed": 498,
+      "avgResponseTime": 66.32394068356639
+    },
+    {
+      "timestamp": 1737401623661,
+      "concurrent": 228,
+      "successful": 77391,
+      "failed": 683,
+      "avgResponseTime": 59.84155712841254
+    },
+    {
+      "timestamp": 1737401628661,
+      "concurrent": 348,
+      "successful": 116296,
+      "failed": 1630,
+      "avgResponseTime": 60.63534250096389
+    },
+    {
+      "timestamp": 1737401633661,
+      "concurrent": 548,
+      "successful": 155499,
+      "failed": 2226,
+      "avgResponseTime": 60.03795627885621
+    },
+    {
+      "timestamp": 1737401638665,
+      "concurrent": 1000,
+      "successful": 194822,
+      "failed": 2290,
+      "avgResponseTime": 60.99432901864049
+    },
+    {
+      "timestamp": 1737401643665,
+      "concurrent": 0,
+      "successful": 233858,
+      "failed": 3249,
+      "avgResponseTime": 62.38613075110155
+    },
+    {
+      "timestamp": 1737401648665,
+      "concurrent": 751,
+      "successful": 272737,
+      "failed": 3454,
+      "avgResponseTime": 64.86100465546953
+    },
+    {
+      "timestamp": 1737401653683,
+      "concurrent": 1000,
+      "successful": 312179,
+      "failed": 3573,
+      "avgResponseTime": 63.94016530601896
+    },
+    {
+      "timestamp": 1737401658683,
+      "concurrent": 0,
+      "successful": 350732,
+      "failed": 4209,
+      "avgResponseTime": 66.9898840557155
+    },
+    {
+      "timestamp": 1737401663683,
+      "concurrent": 492,
+      "successful": 389980,
+      "failed": 4338,
+      "avgResponseTime": 60.67567774154097
+    },
+    {
+      "timestamp": 1737401668683,
+      "concurrent": 658,
+      "successful": 428834,
+      "failed": 5313,
+      "avgResponseTime": 60.46515159314356
+    },
+    {
+      "timestamp": 1737401673683,
+      "concurrent": 764,
+      "successful": 468222,
+      "failed": 5812,
+      "avgResponseTime": 60.46570021326292
+    },
+    {
+      "timestamp": 1737401678696,
+      "concurrent": 1406,
+      "successful": 509395,
+      "failed": 10838,
+      "avgResponseTime": 204.66249726762683
+    },
+    {
+      "timestamp": 1737401683695,
+      "concurrent": 1957,
+      "successful": 548357,
+      "failed": 18209,
+      "avgResponseTime": 211.40452235511523
+    },
+    {
+      "timestamp": 1737401688695,
+      "concurrent": 2198,
+      "successful": 593952,
+      "failed": 18500,
+      "avgResponseTime": 215.6051102094528
+    },
+    {
+      "timestamp": 1737401693702,
+      "concurrent": 2309,
+      "successful": 639378,
+      "failed": 19034,
+      "avgResponseTime": 216.90613305155637
+    },
+    {
+      "timestamp": 1737401698733,
+      "concurrent": 2424,
+      "successful": 682639,
+      "failed": 22606,
+      "avgResponseTime": 210.5990152793509
+    },
+    {
+      "timestamp": 1737401703733,
+      "concurrent": 2200,
+      "successful": 726045,
+      "failed": 25005,
+      "avgResponseTime": 213.65884900704972
+    },
+    {
+      "timestamp": 1737401708732,
+      "concurrent": 1483,
+      "successful": 769324,
+      "failed": 28818,
+      "avgResponseTime": 207.792324221909
+    },
+    {
+      "timestamp": 1737401713754,
+      "concurrent": 2498,
+      "successful": 814342,
+      "failed": 30928,
+      "avgResponseTime": 208.38553467501887
+    },
+    {
+      "timestamp": 1737401718796,
+      "concurrent": 2462,
+      "successful": 859614,
+      "failed": 32649,
+      "avgResponseTime": 210.48009807386464
+    },
+    {
+      "timestamp": 1737401723822,
+      "concurrent": 2404,
+      "successful": 903877,
+      "failed": 35281,
+      "avgResponseTime": 208.92061089397464
+    },
+    {
+      "timestamp": 1737401728852,
+      "concurrent": 2498,
+      "successful": 949370,
+      "failed": 36592,
+      "avgResponseTime": 211.9100740773306
+    },
+    {
+      "timestamp": 1737401733851,
+      "concurrent": 2480,
+      "successful": 995507,
+      "failed": 36735,
+      "avgResponseTime": 214.44213971432907
+    },
+    {
+      "timestamp": 1737401738851,
+      "concurrent": 2356,
+      "successful": 1042018,
+      "failed": 36763,
+      "avgResponseTime": 214.07920706929545
+    },
+    {
+      "timestamp": 1737401743851,
+      "concurrent": 2008,
+      "successful": 1087869,
+      "failed": 37142,
+      "avgResponseTime": 215.65187236919587
+    },
+    {
+      "timestamp": 1737401748857,
+      "concurrent": 2402,
+      "successful": 1132896,
+      "failed": 39064,
+      "avgResponseTime": 209.06274013369756
+    },
+    {
+      "timestamp": 1737401753893,
+      "concurrent": 2486,
+      "successful": 1178337,
+      "failed": 40646,
+      "avgResponseTime": 209.00776831495784
+    },
+    {
+      "timestamp": 1737401758913,
+      "concurrent": 2097,
+      "successful": 1222861,
+      "failed": 42840,
+      "avgResponseTime": 211.83056329170785
+    },
+    {
+      "timestamp": 1737401763939,
+      "concurrent": 2459,
+      "successful": 1269147,
+      "failed": 43399,
+      "avgResponseTime": 211.06278356306441
+    },
+    {
+      "timestamp": 1737401768941,
+      "concurrent": 2499,
+      "successful": 1315175,
+      "failed": 43556,
+      "avgResponseTime": 216.1643999304771
+    },
+    {
+      "timestamp": 1737401773969,
+      "concurrent": 2498,
+      "successful": 1360934,
+      "failed": 44657,
+      "avgResponseTime": 210.15242903035468
+    },
+    {
+      "timestamp": 1737401778985,
+      "concurrent": 2499,
+      "successful": 1405114,
+      "failed": 47206,
+      "avgResponseTime": 209.71224535989134
+    },
+    {
+      "timestamp": 1737401784018,
+      "concurrent": 2500,
+      "successful": 1450734,
+      "failed": 48724,
+      "avgResponseTime": 210.80440596229724
+    },
+    {
+      "timestamp": 1737401789018,
+      "concurrent": 2498,
+      "successful": 1496476,
+      "failed": 49086,
+      "avgResponseTime": 214.49674259979886
+    },
+    {
+      "timestamp": 1737401794043,
+      "concurrent": 5000,
+      "successful": 1540147,
+      "failed": 50430,
+      "avgResponseTime": 218.73059925350918
+    },
+    {
+      "timestamp": 1737401799058,
+      "concurrent": 4258,
+      "successful": 1557501,
+      "failed": 74083,
+      "avgResponseTime": 608.4050939264723
+    },
+    {
+      "timestamp": 1737401804125,
+      "concurrent": 3287,
+      "successful": 1578642,
+      "failed": 95873,
+      "avgResponseTime": 612.7818457026631
+    },
+    {
+      "timestamp": 1737401809178,
+      "concurrent": 3115,
+      "successful": 1597925,
+      "failed": 118260,
+      "avgResponseTime": 651.6246953274905
+    },
+    {
+      "timestamp": 1737401814276,
+      "concurrent": 3205,
+      "successful": 1614945,
+      "failed": 142971,
+      "avgResponseTime": 634.4786133960047
+    },
+    {
+      "timestamp": 1737401819344,
+      "concurrent": 3876,
+      "successful": 1635224,
+      "failed": 164116,
+      "avgResponseTime": 582.6871640613442
+    },
+    {
+      "timestamp": 1737401824386,
+      "concurrent": 5000,
+      "successful": 1654527,
+      "failed": 185703,
+      "avgResponseTime": 624.6332694399835
+    },
+    {
+      "timestamp": 1737401829537,
+      "concurrent": 4442,
+      "successful": 1673614,
+      "failed": 208744,
+      "avgResponseTime": 604.5863152931314
+    },
+    {
+      "timestamp": 1737401834585,
+      "concurrent": 5000,
+      "successful": 1691649,
+      "failed": 229918,
+      "avgResponseTime": 656.9541447186027
+    },
+    {
+      "timestamp": 1737401839717,
+      "concurrent": 4290,
+      "successful": 1713284,
+      "failed": 250109,
+      "avgResponseTime": 590.6649410677144
+    },
+    {
+      "timestamp": 1737401844766,
+      "concurrent": 3431,
+      "successful": 1732054,
+      "failed": 272557,
+      "avgResponseTime": 611.6274906766116
+    },
+    {
+      "timestamp": 1737401849819,
+      "concurrent": 4775,
+      "successful": 1751949,
+      "failed": 294836,
+      "avgResponseTime": 570.0381502890174
+    },
+    {
+      "timestamp": 1737401854927,
+      "concurrent": 3700,
+      "successful": 1770928,
+      "failed": 319334,
+      "avgResponseTime": 580.844881184467
+    },
+    {
+      "timestamp": 1737401860082,
+      "concurrent": 3205,
+      "successful": 1791683,
+      "failed": 341060,
+      "avgResponseTime": 558.7711394844616
+    },
+    {
+      "timestamp": 1737401865172,
+      "concurrent": 3678,
+      "successful": 1811064,
+      "failed": 363239,
+      "avgResponseTime": 572.9781745007997
+    },
+    {
+      "timestamp": 1737401870281,
+      "concurrent": 4632,
+      "successful": 1832768,
+      "failed": 382337,
+      "avgResponseTime": 580.3431625506819
+    },
+    {
+      "timestamp": 1737401875359,
+      "concurrent": 3292,
+      "successful": 1854026,
+      "failed": 405025,
+      "avgResponseTime": 569.3199736569762
+    },
+    {
+      "timestamp": 1737401880429,
+      "concurrent": 4422,
+      "successful": 1874281,
+      "failed": 425766,
+      "avgResponseTime": 557.929054554431
+    },
+    {
+      "timestamp": 1737401885533,
+      "concurrent": 3254,
+      "successful": 1895014,
+      "failed": 446873,
+      "avgResponseTime": 580.498335986109
+    },
+    {
+      "timestamp": 1737401890583,
+      "concurrent": 3209,
+      "successful": 1915713,
+      "failed": 469404,
+      "avgResponseTime": 564.3676506111407
+    },
+    {
+      "timestamp": 1737401895657,
+      "concurrent": 5000,
+      "successful": 1934770,
+      "failed": 490603,
+      "avgResponseTime": 621.9640552028126
+    },
+    {
+      "timestamp": 1737401900694,
+      "concurrent": 3889,
+      "successful": 1955555,
+      "failed": 512946,
+      "avgResponseTime": 604.7298051479432
+    },
+    {
+      "timestamp": 1737401905711,
+      "concurrent": 5000,
+      "successful": 1975139,
+      "failed": 534466,
+      "avgResponseTime": 602.7709354575163
+    },
+    {
+      "timestamp": 1737401910805,
+      "concurrent": 3418,
+      "successful": 1995927,
+      "failed": 555890,
+      "avgResponseTime": 592.2629401577833
+    },
+    {
+      "timestamp": 1737401915866,
+      "concurrent": 3240,
+      "successful": 2016738,
+      "failed": 577356,
+      "avgResponseTime": 622.8052472250253
+    },
+    {
+      "timestamp": 1737401920898,
+      "concurrent": 5000,
+      "successful": 2036144,
+      "failed": 597924,
+      "avgResponseTime": 564.1754096671133
+    },
+    {
+      "timestamp": 1737401926026,
+      "concurrent": 2963,
+      "successful": 2056710,
+      "failed": 620717,
+      "avgResponseTime": 586.5556257901391
+    },
+    {
+      "timestamp": 1737401931131,
+      "concurrent": 4883,
+      "successful": 2077422,
+      "failed": 640875,
+      "avgResponseTime": 621.5450946311317
+    },
+    {
+      "timestamp": 1737401936198,
+      "concurrent": 2525,
+      "successful": 2098642,
+      "failed": 662077,
+      "avgResponseTime": 603.2643732327992
+    },
+    {
+      "timestamp": 1737401941361,
+      "concurrent": 3437,
+      "successful": 2119386,
+      "failed": 683542,
+      "avgResponseTime": 562.3160431932125
+    },
+    {
+      "timestamp": 1737401946428,
+      "concurrent": 5000,
+      "successful": 2139439,
+      "failed": 704286,
+      "avgResponseTime": 593.9610532089962
+    },
+    {
+      "timestamp": 1737401951491,
+      "concurrent": 4034,
+      "successful": 2159365,
+      "failed": 723846,
+      "avgResponseTime": 610.5022583559169
+    },
+    {
+      "timestamp": 1737401956533,
+      "concurrent": 5000,
+      "successful": 2180423,
+      "failed": 746714,
+      "avgResponseTime": 599.4072086617913
+    },
+    {
+      "timestamp": 1737401961717,
+      "concurrent": 3494,
+      "successful": 2200970,
+      "failed": 767855,
+      "avgResponseTime": 582.3108969679272
+    },
+    {
+      "timestamp": 1737401966820,
+      "concurrent": 2560,
+      "successful": 2222154,
+      "failed": 789935,
+      "avgResponseTime": 602.3532854984894
+    },
+    {
+      "timestamp": 1737401971890,
+      "concurrent": 2533,
+      "successful": 2241878,
+      "failed": 810438,
+      "avgResponseTime": 577.3510951125533
+    },
+    {
+      "timestamp": 1737401976979,
+      "concurrent": 7171,
+      "successful": 2254423,
+      "failed": 834716,
+      "avgResponseTime": 715.81578318055
+    },
+    {
+      "timestamp": 1737401982094,
+      "concurrent": 5167,
+      "successful": 2265642,
+      "failed": 861889,
+      "avgResponseTime": 1264.1395846332116
+    },
+    {
+      "timestamp": 1737401987255,
+      "concurrent": 6217,
+      "successful": 2282881,
+      "failed": 882665,
+      "avgResponseTime": 920.998897847903
+    },
+    {
+      "timestamp": 1737401992371,
+      "concurrent": 7500,
+      "successful": 2288739,
+      "failed": 894267,
+      "avgResponseTime": 1312.3530215090475
+    },
+    {
+      "timestamp": 1737401997771,
+      "concurrent": 7500,
+      "successful": 2296061,
+      "failed": 899998,
+      "avgResponseTime": 4486.333378858236
+    },
+    {
+      "timestamp": 1737402002834,
+      "concurrent": 7500,
+      "successful": 2303608,
+      "failed": 912349,
+      "avgResponseTime": 1790.0612163773685
+    },
+    {
+      "timestamp": 1737402008016,
+      "concurrent": 4901,
+      "successful": 2314723,
+      "failed": 935035,
+      "avgResponseTime": 1029.8409356725147
+    },
+    {
+      "timestamp": 1737402013193,
+      "concurrent": 5158,
+      "successful": 2324737,
+      "failed": 953084,
+      "avgResponseTime": 1300.6017575394449
+    },
+    {
+      "timestamp": 1737402018262,
+      "concurrent": 7500,
+      "successful": 2340235,
+      "failed": 975129,
+      "avgResponseTime": 1077.5669763840497
+    },
+    {
+      "timestamp": 1737402023456,
+      "concurrent": 7500,
+      "successful": 2353723,
+      "failed": 999091,
+      "avgResponseTime": 1157.6405693950178
+    },
+    {
+      "timestamp": 1737402028528,
+      "concurrent": 7500,
+      "successful": 2363346,
+      "failed": 1022527,
+      "avgResponseTime": 935.8747791748934
+    },
+    {
+      "timestamp": 1737402033622,
+      "concurrent": 5468,
+      "successful": 2376689,
+      "failed": 1044847,
+      "avgResponseTime": 1040.5062579629769
+    },
+    {
+      "timestamp": 1737402038621,
+      "concurrent": 2844,
+      "successful": 2413746,
+      "failed": 1052976,
+      "avgResponseTime": 308.8558976711552
+    },
+    {
+      "timestamp": 1737402043651,
+      "concurrent": 2360,
+      "successful": 2455227,
+      "failed": 1054233,
+      "avgResponseTime": 261.1110146814204
+    },
+    {
+      "timestamp": 1737402048650,
+      "concurrent": 2480,
+      "successful": 2494607,
+      "failed": 1059001,
+      "avgResponseTime": 253.38110716099544
+    },
+    {
+      "timestamp": 1737402053652,
+      "concurrent": 2677,
+      "successful": 2538005,
+      "failed": 1059783,
+      "avgResponseTime": 248.6221945711784
+    },
+    {
+      "timestamp": 1737402058651,
+      "concurrent": 2479,
+      "successful": 2582345,
+      "failed": 1060428,
+      "avgResponseTime": 248.6657645466847
+    },
+    {
+      "timestamp": 1737402063651,
+      "concurrent": 2589,
+      "successful": 2626238,
+      "failed": 1060913,
+      "avgResponseTime": 248.2621374706673
+    },
+    {
+      "timestamp": 1737402068651,
+      "concurrent": 2117,
+      "successful": 2669804,
+      "failed": 1062350,
+      "avgResponseTime": 247.5482256805766
+    },
+    {
+      "timestamp": 1737402073651,
+      "concurrent": 2014,
+      "successful": 2713627,
+      "failed": 1063435,
+      "avgResponseTime": 246.5458320973005
+    },
+    {
+      "timestamp": 1737402078651,
+      "concurrent": 1781,
+      "successful": 2757772,
+      "failed": 1064447,
+      "avgResponseTime": 246.14506739155058
+    },
+    {
+      "timestamp": 1737402083655,
+      "concurrent": 2998,
+      "successful": 2801047,
+      "failed": 1065179,
+      "avgResponseTime": 249.00570768341998
+    },
+    {
+      "timestamp": 1737402088654,
+      "concurrent": 2798,
+      "successful": 2844791,
+      "failed": 1065535,
+      "avgResponseTime": 251.6051572787125
+    },
+    {
+      "timestamp": 1737402093654,
+      "concurrent": 2005,
+      "successful": 2888350,
+      "failed": 1065813,
+      "avgResponseTime": 254.2284717280011
+    },
+    {
+      "timestamp": 1737402098664,
+      "concurrent": 2744,
+      "successful": 2931520,
+      "failed": 1066838,
+      "avgResponseTime": 252.0966180217744
+    },
+    {
+      "timestamp": 1737402103700,
+      "concurrent": 2602,
+      "successful": 2969310,
+      "failed": 1071621,
+      "avgResponseTime": 264.4130722413337
+    },
+    {
+      "timestamp": 1737402108699,
+      "concurrent": 2260,
+      "successful": 3007858,
+      "failed": 1075468,
+      "avgResponseTime": 265.42995745563974
+    },
+    {
+      "timestamp": 1737402113706,
+      "concurrent": 2896,
+      "successful": 3049202,
+      "failed": 1077980,
+      "avgResponseTime": 256.3626886609907
+    },
+    {
+      "timestamp": 1737402118754,
+      "concurrent": 2133,
+      "successful": 3088191,
+      "failed": 1081299,
+      "avgResponseTime": 266.9715304316602
+    },
+    {
+      "timestamp": 1737402123781,
+      "concurrent": 2998,
+      "successful": 3125009,
+      "failed": 1088152,
+      "avgResponseTime": 250.10902276060622
+    },
+    {
+      "timestamp": 1737402128825,
+      "concurrent": 2137,
+      "successful": 3166010,
+      "failed": 1090823,
+      "avgResponseTime": 256.6888368576376
+    },
+    {
+      "timestamp": 1737402133844,
+      "concurrent": 2975,
+      "successful": 3197365,
+      "failed": 1099964,
+      "avgResponseTime": 277.58363897305054
+    },
+    {
+      "timestamp": 1737402138847,
+      "concurrent": 2975,
+      "successful": 3239078,
+      "failed": 1100733,
+      "avgResponseTime": 263.5933402056913
+    },
+    {
+      "timestamp": 1737402143941,
+      "concurrent": 2691,
+      "successful": 3275440,
+      "failed": 1106306,
+      "avgResponseTime": 271.38306473791323
+    },
+    {
+      "timestamp": 1737402148976,
+      "concurrent": 3000,
+      "successful": 3311861,
+      "failed": 1111992,
+      "avgResponseTime": 268.4715136871585
+    },
+    {
+      "timestamp": 1737402153986,
+      "concurrent": 2611,
+      "successful": 3356304,
+      "failed": 1112294,
+      "avgResponseTime": 250.2440879328578
+    },
+    {
+      "timestamp": 1737402158992,
+      "concurrent": 522,
+      "successful": 3388754,
+      "failed": 1112294,
+      "avgResponseTime": 68.86166409861325
+    },
+    {
+      "timestamp": 1737402163993,
+      "concurrent": 260,
+      "successful": 3419942,
+      "failed": 1112447,
+      "avgResponseTime": 44.962068744388866
+    },
+    {
+      "timestamp": 1737402168993,
+      "concurrent": 260,
+      "successful": 3450754,
+      "failed": 1112715,
+      "avgResponseTime": 48.34252888485006
+    },
+    {
+      "timestamp": 1737402173994,
+      "concurrent": 260,
+      "successful": 3481626,
+      "failed": 1112923,
+      "avgResponseTime": 47.368521637729984
+    },
+    {
+      "timestamp": 1737402178997,
+      "concurrent": 1000,
+      "successful": 3512407,
+      "failed": 1113221,
+      "avgResponseTime": 44.99753094441376
+    },
+    {
+      "timestamp": 1737402184000,
+      "concurrent": 1000,
+      "successful": 3543101,
+      "failed": 1113606,
+      "avgResponseTime": 45.516941421776245
+    },
+    {
+      "timestamp": 1737402189000,
+      "concurrent": 1000,
+      "successful": 3573664,
+      "failed": 1113993,
+      "avgResponseTime": 47.01370938716749
+    },
+    {
+      "timestamp": 1737402194000,
+      "concurrent": 845,
+      "successful": 3604690,
+      "failed": 1114202,
+      "avgResponseTime": 45.847128215045444
+    },
+    {
+      "timestamp": 1737402199000,
+      "concurrent": 349,
+      "successful": 3636092,
+      "failed": 1114376,
+      "avgResponseTime": 45.1819629322973
+    },
+    {
+      "timestamp": 1737402204001,
+      "concurrent": 260,
+      "successful": 3666972,
+      "failed": 1114376,
+      "avgResponseTime": 45.91758419689119
+    },
+    {
+      "timestamp": 1737402209021,
+      "concurrent": 1000,
+      "successful": 3697810,
+      "failed": 1114617,
+      "avgResponseTime": 44.81697905181918
+    },
+    {
+      "timestamp": 1737402214021,
+      "concurrent": 499,
+      "successful": 3729057,
+      "failed": 1114950,
+      "avgResponseTime": 44.63270073927097
+    }
+  ],
+  "throughputHistory": [
+    {
+      "timestamp": 1737401618661,
+      "throughput": 7665.8
+    },
+    {
+      "timestamp": 1737401623661,
+      "throughput": 15614.8
+    },
+    {
+      "timestamp": 1737401628661,
+      "throughput": 23585.2
+    },
+    {
+      "timestamp": 1737401633661,
+      "throughput": 31545
+    },
+    {
+      "timestamp": 1737401638665,
+      "throughput": 39390.88729016787
+    },
+    {
+      "timestamp": 1737401643665,
+      "throughput": 47421.4
+    },
+    {
+      "timestamp": 1737401648665,
+      "throughput": 55238.2
+    },
+    {
+      "timestamp": 1737401653683,
+      "throughput": 62923.87405340774
+    },
+    {
+      "timestamp": 1737401658683,
+      "throughput": 70988.2
+    },
+    {
+      "timestamp": 1737401663683,
+      "throughput": 78863.6
+    },
+    {
+      "timestamp": 1737401668683,
+      "throughput": 86829.4
+    },
+    {
+      "timestamp": 1737401673683,
+      "throughput": 94806.8
+    },
+    {
+      "timestamp": 1737401678696,
+      "throughput": 103776.7803710353
+    },
+    {
+      "timestamp": 1737401683695,
+      "throughput": 113335.8671734347
+    },
+    {
+      "timestamp": 1737401688695,
+      "throughput": 122490.4
+    },
+    {
+      "timestamp": 1737401693702,
+      "throughput": 131498.30237667265
+    },
+    {
+      "timestamp": 1737401698733,
+      "throughput": 140179.88471476844
+    },
+    {
+      "timestamp": 1737401703733,
+      "throughput": 150210
+    },
+    {
+      "timestamp": 1737401708732,
+      "throughput": 159660.3320664133
+    },
+    {
+      "timestamp": 1737401713754,
+      "throughput": 168313.42094782955
+    },
+    {
+      "timestamp": 1737401718796,
+      "throughput": 176966.08488694963
+    },
+    {
+      "timestamp": 1737401723822,
+      "throughput": 186859.9283724632
+    },
+    {
+      "timestamp": 1737401728852,
+      "throughput": 196016.30218687872
+    },
+    {
+      "timestamp": 1737401733851,
+      "throughput": 206489.69793958793
+    },
+    {
+      "timestamp": 1737401738851,
+      "throughput": 215756.2
+    },
+    {
+      "timestamp": 1737401743851,
+      "throughput": 225002.2
+    },
+    {
+      "timestamp": 1737401748857,
+      "throughput": 234111.06671993606
+    },
+    {
+      "timestamp": 1737401753893,
+      "throughput": 242053.8125496426
+    },
+    {
+      "timestamp": 1737401758913,
+      "throughput": 252131.67330677292
+    },
+    {
+      "timestamp": 1737401763939,
+      "throughput": 261151.21368881816
+    },
+    {
+      "timestamp": 1737401768941,
+      "throughput": 271637.5449820072
+    },
+    {
+      "timestamp": 1737401773969,
+      "throughput": 279552.7048528242
+    },
+    {
+      "timestamp": 1737401778985,
+      "throughput": 289537.48006379587
+    },
+    {
+      "timestamp": 1737401784018,
+      "throughput": 297925.29306576593
+    },
+    {
+      "timestamp": 1737401789018,
+      "throughput": 309112.4
+    },
+    {
+      "timestamp": 1737401794043,
+      "throughput": 316532.73631840793
+    },
+    {
+      "timestamp": 1737401799058,
+      "throughput": 325340.777666999
+    },
+    {
+      "timestamp": 1737401804125,
+      "throughput": 330474.6398263272
+    },
+    {
+      "timestamp": 1737401809178,
+      "throughput": 339636.8493963982
+    },
+    {
+      "timestamp": 1737401814276,
+      "throughput": 344824.63711259316
+    },
+    {
+      "timestamp": 1737401819344,
+      "throughput": 355039.46329913184
+    },
+    {
+      "timestamp": 1737401824386,
+      "throughput": 364980.16660055536
+    },
+    {
+      "timestamp": 1737401829537,
+      "throughput": 365435.4494272957
+    },
+    {
+      "timestamp": 1737401834585,
+      "throughput": 380659.07290015847
+    },
+    {
+      "timestamp": 1737401839717,
+      "throughput": 382578.5268901014
+    },
+    {
+      "timestamp": 1737401844766,
+      "throughput": 397031.2933254109
+    },
+    {
+      "timestamp": 1737401849819,
+      "throughput": 405063.3287156145
+    },
+    {
+      "timestamp": 1737401854927,
+      "throughput": 409213.3907595928
+    },
+    {
+      "timestamp": 1737401860082,
+      "throughput": 413723.18137730355
+    },
+    {
+      "timestamp": 1737401865172,
+      "throughput": 427171.5127701375
+    },
+    {
+      "timestamp": 1737401870281,
+      "throughput": 433569.19162262673
+    },
+    {
+      "timestamp": 1737401875359,
+      "throughput": 444870.22449783375
+    },
+    {
+      "timestamp": 1737401880429,
+      "throughput": 453658.1854043392
+    },
+    {
+      "timestamp": 1737401885533,
+      "throughput": 458833.65987460816
+    },
+    {
+      "timestamp": 1737401890583,
+      "throughput": 472300.396039604
+    },
+    {
+      "timestamp": 1737401895657,
+      "throughput": 478000.1970831691
+    },
+    {
+      "timestamp": 1737401900694,
+      "throughput": 490073.65495334525
+    },
+    {
+      "timestamp": 1737401905711,
+      "throughput": 500220.2511461032
+    },
+    {
+      "timestamp": 1737401910805,
+      "throughput": 500945.6223007459
+    },
+    {
+      "timestamp": 1737401915866,
+      "throughput": 512565.50088915235
+    },
+    {
+      "timestamp": 1737401920898,
+      "throughput": 523463.43402225757
+    },
+    {
+      "timestamp": 1737401926026,
+      "throughput": 522119.1497659906
+    },
+    {
+      "timestamp": 1737401931131,
+      "throughput": 532477.375122429
+    },
+    {
+      "timestamp": 1737401936198,
+      "throughput": 544842.9050720347
+    },
+    {
+      "timestamp": 1737401941361,
+      "throughput": 542887.4685260507
+    },
+    {
+      "timestamp": 1737401946428,
+      "throughput": 561224.5904874679
+    },
+    {
+      "timestamp": 1737401951491,
+      "throughput": 569466.9168477188
+    },
+    {
+      "timestamp": 1737401956533,
+      "throughput": 580550.7735025784
+    },
+    {
+      "timestamp": 1737401961717,
+      "throughput": 572690.0077160493
+    },
+    {
+      "timestamp": 1737401966820,
+      "throughput": 590258.4754066236
+    },
+    {
+      "timestamp": 1737401971890,
+      "throughput": 602034.7140039448
+    },
+    {
+      "timestamp": 1737401976979,
+      "throughput": 607022.794262134
+    },
+    {
+      "timestamp": 1737401982094,
+      "throughput": 611443.0107526882
+    },
+    {
+      "timestamp": 1737401987255,
+      "throughput": 613359.0389459408
+    },
+    {
+      "timestamp": 1737401992371,
+      "throughput": 622166.927286943
+    },
+    {
+      "timestamp": 1737401997771,
+      "throughput": 591862.7777777778
+    },
+    {
+      "timestamp": 1737402002834,
+      "throughput": 635188.0308117718
+    },
+    {
+      "timestamp": 1737402008016,
+      "throughput": 627124.276341181
+    },
+    {
+      "timestamp": 1737402013193,
+      "throughput": 633150.6664091173
+    },
+    {
+      "timestamp": 1737402018262,
+      "throughput": 654046.9520615506
+    },
+    {
+      "timestamp": 1737402023456,
+      "throughput": 645516.7500962649
+    },
+    {
+      "timestamp": 1737402028528,
+      "throughput": 667561.7113564669
+    },
+    {
+      "timestamp": 1737402033622,
+      "throughput": 671679.6230859834
+    },
+    {
+      "timestamp": 1737402038621,
+      "throughput": 693483.096619324
+    },
+    {
+      "timestamp": 1737402043651,
+      "throughput": 697705.7654075547
+    },
+    {
+      "timestamp": 1737402048650,
+      "throughput": 710863.7727545509
+    },
+    {
+      "timestamp": 1737402053652,
+      "throughput": 719269.8920431827
+    },
+    {
+      "timestamp": 1737402058651,
+      "throughput": 728700.3400680136
+    },
+    {
+      "timestamp": 1737402063651,
+      "throughput": 737430.2
+    },
+    {
+      "timestamp": 1737402068651,
+      "throughput": 746430.8
+    },
+    {
+      "timestamp": 1737402073651,
+      "throughput": 755412.4
+    },
+    {
+      "timestamp": 1737402078651,
+      "throughput": 764443.8
+    },
+    {
+      "timestamp": 1737402083655,
+      "throughput": 772627.098321343
+    },
+    {
+      "timestamp": 1737402088654,
+      "throughput": 782221.6443288658
+    },
+    {
+      "timestamp": 1737402093654,
+      "throughput": 790832.6
+    },
+    {
+      "timestamp": 1737402098664,
+      "throughput": 798075.4491017965
+    },
+    {
+      "timestamp": 1737402103700,
+      "throughput": 802408.8562351073
+    },
+    {
+      "timestamp": 1737402108699,
+      "throughput": 816828.5657131426
+    },
+    {
+      "timestamp": 1737402113706,
+      "throughput": 824282.4046335132
+    },
+    {
+      "timestamp": 1737402118754,
+      "throughput": 825968.7004754358
+    },
+    {
+      "timestamp": 1737402123781,
+      "throughput": 838106.4253033618
+    },
+    {
+      "timestamp": 1737402128825,
+      "throughput": 843939.9286280731
+    },
+    {
+      "timestamp": 1737402133844,
+      "throughput": 856212.1936640765
+    },
+    {
+      "timestamp": 1737402138847,
+      "throughput": 867441.7349590246
+    },
+    {
+      "timestamp": 1737402143941,
+      "throughput": 860177.8563015312
+    },
+    {
+      "timestamp": 1737402148976,
+      "throughput": 878620.2581926514
+    },
+    {
+      "timestamp": 1737402153986,
+      "throughput": 891935.7285429143
+    },
+    {
+      "timestamp": 1737402158992,
+      "throughput": 899130.6432281262
+    },
+    {
+      "timestamp": 1737402163993,
+      "throughput": 906296.5406918615
+    },
+    {
+      "timestamp": 1737402168993,
+      "throughput": 912693.8
+    },
+    {
+      "timestamp": 1737402173994,
+      "throughput": 918726.0547890421
+    },
+    {
+      "timestamp": 1737402178997,
+      "throughput": 924570.8574855087
+    },
+    {
+      "timestamp": 1737402184000,
+      "throughput": 930782.9302418549
+    },
+    {
+      "timestamp": 1737402189000,
+      "throughput": 937531.4
+    },
+    {
+      "timestamp": 1737402194000,
+      "throughput": 943778.4
+    },
+    {
+      "timestamp": 1737402199000,
+      "throughput": 950093.6
+    },
+    {
+      "timestamp": 1737402204001,
+      "throughput": 956078.3843231353
+    },
+    {
+      "timestamp": 1737402209021,
+      "throughput": 958650.7968127491
+    },
+    {
+      "timestamp": 1737402214021,
+      "throughput": 968801.4
+    }
+  ]
+}
