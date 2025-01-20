@@ -6,20 +6,110 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 // limiting to 100 concurrent requests
 var sem = make(chan struct{}, 100)
-
 var RedisCache = cache.NewRedisCache("localhost:6379", "", 0, 10*time.Minute)
 
+var (
+	requestsTotal = promauto.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "proxy_requests_total",
+			Help: "Total number of requests by method and status",
+		},
+		[]string{"method", "status"},
+	)
+
+	requestDuration = promauto.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Name:    "proxy_request_duration_seconds",
+			Help:    "Request duration in seconds",
+			Buckets: prometheus.DefBuckets,
+		},
+		[]string{"method"},
+	)
+
+	cacheHits = promauto.NewCounter(
+		prometheus.CounterOpts{
+			Name: "proxy_cache_hits_total",
+			Help: "Total number of cache hits",
+		},
+	)
+
+	cacheMisses = promauto.NewCounter(
+		prometheus.CounterOpts{
+			Name: "proxy_cache_misses_total",
+			Help: "Total number of cache misses",
+		},
+	)
+
+	activeConnections = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "proxy_active_connections",
+			Help: "Number of active connections",
+		},
+	)
+
+	requestSize = promauto.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Name:    "proxy_request_size_bytes",
+			Help:    "Size of requests in bytes",
+			Buckets: []float64{100, 1000, 10000, 100000, 1000000},
+		},
+		[]string{"method"},
+	)
+
+	responseSize = promauto.NewHistogramVec(
+		prometheus.HistogramOpts{
+			Name:    "proxy_response_size_bytes",
+			Help:    "Size of responses in bytes",
+			Buckets: []float64{100, 1000, 10000, 100000, 1000000},
+		},
+		[]string{"method"},
+	)
+
+	httpConnections = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "proxy_http_connections",
+			Help: "Current HTTP connections",
+		},
+	)
+
+	httpsConnections = promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "proxy_https_connections",
+			Help: "Current HTTPS (CONNECT) connections",
+		},
+	)
+)
+
 func handleConnect(w http.ResponseWriter, r *http.Request) {
+	start := time.Now()
+	activeConnections.Inc()
+	httpsConnections.Inc()
+	defer func() {
+		activeConnections.Dec()
+		httpsConnections.Dec()
+	}()
 
 	// Limiting requests through Semaphores
 	sem <- struct{}{}
 	defer func() { <-sem }()
+
+	// record metrics at end
+	defer func() {
+		duration := time.Since(start).Seconds()
+		requestDuration.WithLabelValues("CONNECT").Observe(duration)
+		requestsTotal.WithLabelValues("CONNECT", "200").Inc() // assuming success, we'll update on error
+	}()
 
 	log.Printf("Handling CONNECT for %s", r.Host)
 
@@ -89,14 +179,39 @@ func handleConnect(w http.ResponseWriter, r *http.Request) {
 }
 
 func proxyHandler(w http.ResponseWriter, r *http.Request) {
+	start := time.Now()
+	activeConnections.Inc()
+	defer activeConnections.Dec()
+
 	if r.Method == http.MethodConnect {
 		handleConnect(w, r)
 		return
 	}
 
+	httpConnections.Inc() // new: track http
+	defer func() {
+		activeConnections.Dec()
+		httpConnections.Dec()
+	}()
+
 	// Limiting requests through Semaphores
 	sem <- struct{}{}
 	defer func() { <-sem }()
+
+	// track request size
+	if r.ContentLength > 0 {
+		requestSize.WithLabelValues(r.Method).Observe(float64(r.ContentLength))
+	}
+
+	if r.Method == http.MethodGet {
+		if cachedData, found := RedisCache.Get(r.URL.String()); found {
+			cacheHits.Inc()
+			w.Write([]byte(cachedData))
+			requestsTotal.WithLabelValues("GET", "200").Inc()
+			return
+		}
+		cacheMisses.Inc()
+	}
 
 	log.Printf("Proxying HTTP request: %s %s", r.Method, r.URL)
 
@@ -149,6 +264,8 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	responseSize.WithLabelValues(r.Method).Observe(float64(len(respData)))
+
 	// store response in cache for GET requests only
 	if r.Method == http.MethodGet {
 		RedisCache.Set(r.URL.String(), string(respData))
@@ -161,12 +278,20 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("Error copying response: %v", err)
 	}
+
+	requestDuration.WithLabelValues(r.Method).Observe(time.Since(start).Seconds())
+	requestsTotal.WithLabelValues(r.Method, strconv.Itoa(resp.StatusCode)).Inc()
 }
 
 func main() {
+	// Create a new mux for metrics
+	mux := http.NewServeMux()
+	mux.Handle("/metrics", promhttp.Handler())
+	mux.Handle("/", http.HandlerFunc(proxyHandler))
+
 	server := &http.Server{
 		Addr:              ":8080",
-		Handler:           http.HandlerFunc(proxyHandler),
+		Handler:           mux,
 		ReadTimeout:       30 * time.Second,
 		WriteTimeout:      30 * time.Second,
 		IdleTimeout:       120 * time.Second,
