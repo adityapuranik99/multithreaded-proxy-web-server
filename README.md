@@ -1,109 +1,179 @@
-
-# Multithreaded Proxy Web Server
-
-A high-performance multithreaded proxy web server built in Go. This project features two versions:
-- **With LRU Cache**: Caches GET responses to speed up repeated requests.
-- **Without Cache**: A simple proxy without caching.
+A high-performance proxy server built in Go featuring multiple caching strategies, Prometheus metrics, and comprehensive load testing capabilities.
 
 ## 📂 Project Structure
 
 ```
-MULTITHREADED-PROXY-WEB-SERVER/
-├── certs/                    # SSL Certificates (optional)
-├── cmd/                      # Entrypoint binaries
-│   ├── proxy_with_lru_cache/ # Proxy with LRU caching
+./
+├── cmd/
+│   ├── proxy_with_lru_cache/    # Proxy with in-memory LRU cache
 │   │   └── main.go
-│   └── proxy_without_cache/  # Basic proxy without caching
+│   ├── proxy_with_redis_cache/  # Proxy with Redis caching
+│   │   └── main.go
+│   └── proxy_without_cache/     # Basic proxy without caching
 │       └── main.go
 ├── internals/
 │   └── cache/
-│       └── lru.go            # LRU Cache logic
-├── go.mod                    # Go module file
-├── go.sum                    # Checksum file
-└── .gitignore                # Ignored files
+│       ├── lru.go               # LRU Cache implementation
+│       └── redis_cache.go       # Redis Cache implementation
+├── proxy-test/                  # Load testing suite
+│   ├── load-test.js            # Main load testing script
+│   ├── verify-proxy.js         # Proxy verification script
+│   ├── package.json
+│   └── package-lock.json
+├── prometheus.yml              # Prometheus configuration
+├── dump.rdb                    # Redis dump file
+├── go.mod                      # Go module file
+├── go.sum                      # Dependencies checksum
+└── .gitignore
 ```
 
 ## 🚀 Features
 
-- Handles HTTP and HTTPS requests
-- Limits concurrent requests using semaphores
-- LRU Cache for GET requests (configurable)
+### Core Functionality
+- HTTP and HTTPS proxy support
+- Concurrent request handling with semaphore limiting
+- Multiple caching strategies:
+  - In-memory LRU Cache
+  - Redis-based distributed cache
+  - No-cache option for benchmarking
 
+### Monitoring & Metrics
+- Prometheus integration
+- Comprehensive metrics collection:
+  - Request counts by method and status
+  - Request duration tracking
+  - Cache hit/miss ratios
+  - Active connection monitoring
+  - Request/response size tracking
+  - HTTP/HTTPS connection counts
 
-## Running with Redis
-
-Ensure Redis is running locally (default port 6379), or modify the Redis connection string in internals/cache/redis.go:
-
-    
-    redisClient = redis.NewClient(&redis.Options{
-        Addr:     "localhost:6379",
-        Password: "", // No password
-        DB:       0,  // Default database
-    })
-    
-
-### Testing the Cache
-
-1. Run the proxy server and make requests.
-
-2. Measure response time for the same request:
-
-    - First request (miss) should take longer.
-
-    - Subsequent requests (hit) should be faster.
+### Load Testing
+- Configurable concurrent load testing
+- Multiple testing stages
+- Detailed performance reporting
+- Various target URL scenarios
 
 ## 🛠️ Setup & Run
 
-1. **Clone the repo**
-    ```bash
-    git clone https://github.com/your_username/multithreaded-proxy-web-server.git
-    cd multithreaded-proxy-web-server
-    ```
-
-2. **Install dependencies**
-    ```bash
-    go mod tidy
-    ```
-
-3. **Run Proxy Without Cache**
-    ```bash
-    go run cmd/proxy_without_cache/main.go
-    ```
-
-4. **Run Proxy With LRU Cache**
-    ```bash
-    go run cmd/proxy_with_lru_cache/main.go
-    ```
-
-5. **Run Proxy with Redis Cache**
-
-    ```bash
-    redis server
-    ```
-
-    ```bash
-    go run cmd/proxy_with_redis_cache/main.go
-    ``` 
-
-6. **Test with cURL**
-    ```bash
-    curl -x http://localhost:8080 http://example.com
-    ```
-
-## 💡 Future Improvements
-
-- add tls support for https requests
-
-- implement response compression
-
-- detailed logging and metrics
-
-- authentication for proxy access
-
-## 🔒 (Optional) Generate Self-Signed SSL Certificates
-
+### 1. Basic Setup
 ```bash
-mkdir certs
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
--keyout certs/proxy.key -out certs/proxy.crt
+# Clone the repository
+git clone <repository-url>
+cd proxy-server
+
+# Install Go dependencies
+go mod tidy
+
+# Install Node.js dependencies for testing
+cd proxy-test
+npm install
+cd ..
 ```
+
+### 2. Running Different Proxy Versions
+
+#### Basic Proxy
+```bash
+go run cmd/proxy_without_cache/main.go
+```
+
+#### LRU Cache Proxy
+```bash
+go run cmd/proxy_with_lru_cache/main.go
+```
+
+#### Redis Cache Proxy
+```bash
+# Start Redis server
+redis-server
+
+# Run proxy
+go run cmd/proxy_with_redis_cache/main.go
+```
+
+### 3. Monitoring Setup
+
+#### Start Prometheus
+```bash
+# Ensure prometheus.yml is configured correctly
+prometheus --config.file=prometheus.yml
+```
+
+### 4. Load Testing
+
+#### Basic Verification
+```bash
+cd proxy-test
+node verify-proxy.js
+```
+
+#### Full Load Test
+```bash
+node load-test.js
+```
+
+The load test includes:
+- Warmup period: 1000 concurrent requests for 1 minute
+- Ramp-up: 2500 concurrent for 2 minutes
+- Heavy load: 5000 concurrent for 3 minutes
+- Peak load: 7500 concurrent for 1 minute
+- Scale down: 3000 concurrent for 2 minutes
+- Cool down: 1000 concurrent for 1 minute
+
+## 📊 Monitoring & Metrics
+
+### Available Metrics
+- `proxy_requests_total`: Total requests by method and status
+- `proxy_request_duration_seconds`: Request duration histogram
+- `proxy_cache_hits_total`: Cache hit counter
+- `proxy_cache_misses_total`: Cache miss counter
+- `proxy_active_connections`: Current active connections
+- `proxy_http_connections`: Current HTTP connections
+- `proxy_https_connections`: Current HTTPS connections
+
+Access metrics at: http://localhost:8080/metrics
+
+## ⚙️ Configuration
+
+### Redis Cache Settings
+```go
+RedisCache = cache.NewRedisCache(
+    "localhost:6379", // Redis address
+    "",              // Password
+    0,               // Database
+    10*time.Minute   // Cache TTL
+)
+```
+
+### LRU Cache Settings
+```go
+lru_cache = cache.NewCache(100) // Cache size
+```
+
+### Load Test Configuration
+```javascript
+const CONFIG = {
+    stages: [
+        { duration: 60, requests: 1000 },  // Customize stages
+        // ... more stages
+    ],
+    timeoutMs: 10000,
+    statsInterval: 5000
+};
+```
+
+## 📈 Performance Testing
+
+Results are saved in `proxy-test/load-test-report.json` including:
+- Success/failure rates
+- Response time distributions
+- Throughput metrics
+- Error analysis
+- Per-URL statistics
+
+## 🔒 Security Considerations
+
+- Rate limiting through semaphores (100 concurrent requests)
+- Timeout configurations for all connections
+- Error handling for all network operations
+- Clean connection termination
